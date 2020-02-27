@@ -1,0 +1,31 @@
+body {
+    margin: 0px;
+    padding: 0px;
+}
+
+* {
+    box-sizing: border-box;
+}
+
+.Parallax {
+    height: calc(100vh - 48px);
+}
+
+.Para_BackPic {
+    background-image: url('https://i.pinimg.com/564x/75/da/3b/75da3b02ee111165f33031320b483e53.jpg');
+    height: 100%;
+    width: 100%;
+    background-size: cover;
+    background-attachment: fixed;
+}
+
+.Para_Content {
+    height: 40%;
+    width: 40%;
+    background-color: white;
+}
+
+.card-title,
+.card-text {
+    text-align: center;
+}

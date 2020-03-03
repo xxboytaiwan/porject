@@ -1,0 +1,13 @@
+.all {
+    width: 80%;
+    margin: auto;
+    display: flex;
+    justify-content: space-between;
+}
+
+.PicControll,
+.ContextControll {
+    height: 300px;
+    width: 45%;
+    background-color: chartreuse;
+}

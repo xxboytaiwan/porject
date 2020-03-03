@@ -7,6 +7,119 @@
     <title>Document</title>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
     <link rel="stylesheet" href="{{asset('assets/frame/css/code.css')}}">
+    <style>
+         * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin: 0;
+            padding: 0;
+        }
+
+        .All {
+            width: 1020px;
+            margin: auto;
+            padding-top: 50px;
+            display: flex;
+        }
+
+        .pics {
+            width: 680px;
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-between;
+        }
+
+        .employees {
+            width: 170px;
+            height: 170px;
+            background-color: red;
+            transition: 2s;
+        }
+
+        .employee {
+            width: 100%;
+            height: 100%;
+            position: relative;
+            top: 0px;
+            left: 0px;
+            z-index: 0;
+            transition: 1s;
+        }
+
+        .employees:nth-child(4n+1).active .employee {
+            left: 765px;
+            transition: 1s;
+            background-color: skyblue;
+            z-index: 2;
+        }
+
+        .employees:nth-child(4n+2).active .employee {
+            left: 595px;
+            transition: 1s;
+            background-color: skyblue;
+            z-index: 2;
+        }
+
+        .employees:nth-child(4n+3).active .employee {
+            left: 425px;
+            transition: 1s;
+            background-color: skyblue;
+            z-index: 2;
+        }
+
+        .employees:nth-child(4n).active .employee {
+            left: 255px;
+            transition: 1s;
+            background-color: skyblue;
+            z-index: 2;
+        }
+
+        .employees:nth-child(n+1):nth-child(-n+4).active .employee {
+            top: 85px;
+        }
+
+        .employees:nth-child(n+5):nth-child(-n+8).active .employee {
+            top: -85px;
+        }
+
+        .employees:nth-child(n+9):nth-child(-n+12).active .employee {
+            top: -255px;
+        }
+
+        .employees.grow .employee {
+            transform: scale(2);
+        }
+
+        .intro {
+            width: 340px;
+            height: 510px;
+            background-color: royalblue;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+        }
+
+        .selfive {
+            width: 340px;
+            height: 340px;
+            background-color: tomato;
+            background-image: url('https://static.wixstatic.com/media/94b792_36540e3c4de7409fb11e5af0388d03a3~mv2.jpg/v1/fill/w_90,h_99,al_c,q_80,usm_0.66_1.00_0.01/%E7%B6%B2%E7%AB%99%E5%B0%8F%E6%A8%99.webp');
+            background-size: cover;
+            background-position: center;
+        }
+
+        .Content {
+            width: 100%;
+            height: calc(100% / 3);
+            background-color: yellow;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+        }
+    </style>
 
 </head>
 
@@ -28,6 +141,13 @@
                 <li class="nav-item">
                     <a class="nav-link" href="/card">Card</a>
                 </li>
+                <li class="nav-item">
+                    <a href="/pics" class="nav-link">Pics</a>
+                </li>
+                <li class="nav-item">
+                    <a href="/update" class="nav-link">Update</a>
+                </li>
+                <li><a href="/home" class="nav-link">Login</a></li>
                 <!-- <li class="nav-item dropdown">
                     <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                 Dropdown
@@ -39,9 +159,9 @@
                     <a class="dropdown-item" href="#">Something else here</a>
                 </div>
                 </li>
-                <li class="nav-item">
+                {{-- <li class="nav-item">
                     <a class="nav-link disabled" href="#" tabindex="-1" aria-disabled="true">Disabled</a>
-                </li>
+                </li> --}}
             </ul>
             <form class="form-inline my-2 my-lg-0">
                 <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">

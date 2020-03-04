@@ -3,8 +3,11 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use DB;
+use App\News;
+use App\Update;
 
-class UpdateController extends Controller
+class DataController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -13,7 +16,8 @@ class UpdateController extends Controller
      */
     public function index()
     {
-       return view('auth/update/index');
+        $news = DB::table('newstest')->get();
+        return view('auth/data/index',compact('news'));
     }
 
     /**
@@ -23,7 +27,7 @@ class UpdateController extends Controller
      */
     public function create()
     {
-        //
+        return view('auth/data/create');
     }
 
     /**
@@ -56,7 +60,8 @@ class UpdateController extends Controller
      */
     public function edit($id)
     {
-        //
+        $news = DB::table('newstest')->find($id);
+        return view('auth/data/update',compact('news'));
     }
 
     /**
@@ -68,7 +73,14 @@ class UpdateController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        // $news = News::find($id);
+        // $news->img = $request->img;
+        // $news->context = $request->context;
+        // $news->save();
+        News::find($id) ->update($request->all());
+
+        return redirect('/data');
+
     }
 
     /**
@@ -79,6 +91,9 @@ class UpdateController extends Controller
      */
     public function destroy($id)
     {
-        //
+        // dd($id);
+       DB::table('newstest')->delete($id);
+       $news = DB::table('newstest')->get();
+       return redirect('/data');
     }
 }

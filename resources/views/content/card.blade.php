@@ -7,7 +7,7 @@
             @foreach ($news as $item)
             <div class="col-sm-4 d-flex justify-content-center">
                 <div class="card" style="width: 18rem;">
-                    <img src="{{$item->img}}" class="card-img-top" alt="">
+                    <img src="{{asset('/storage/'.$item->img)}}" class="card-img-top" alt="">
                     <div class="card-body">
                         <p class="card-text">{{$item->context}}</p>
                     </div>

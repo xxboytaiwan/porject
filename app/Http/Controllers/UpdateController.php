@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Employees;
 
 class UpdateController extends Controller
 {
@@ -34,7 +35,11 @@ class UpdateController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $Arr = $request -> all();
+
+        Employees::create($Arr) -> save();
+        dd($Arr);
+        // return redirect('/update');
     }
 
     /**

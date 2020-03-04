@@ -2,7 +2,7 @@
 
 @section('content')
 <div class="container">
-    <form method="POST" action="/newscontroll/store">
+    <form method="POST" action="/newscontroll/store" enctype="multipart/form-data">
         @csrf
         <div class="form-group">
           <label for="id">ID</label>
@@ -11,7 +11,7 @@
         </div>
         <div class="form-group">
           <label for="img">IMG</label>
-          <input type="text" class="form-control" id="img" name="img">
+          <input type="file" class="form-control" id="img" name="img" required>
         </div>
         <div class="form-group">
             <label for="context">Context</label>
@@ -19,6 +19,7 @@
           </div>
 
         <button type="submit" class="btn btn-primary">新增</button>
+
       </form>
 
 </div>

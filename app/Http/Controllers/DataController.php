@@ -2,10 +2,12 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
-use DB;
 use App\News;
 use App\Update;
+use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\File;
+use Illuminate\Support\Facades\Storage;
 
 class DataController extends Controller
 {
@@ -91,9 +93,15 @@ class DataController extends Controller
      */
     public function destroy($id)
     {
-        // dd($id);
+
+    //    $old_img = News::find($id)->img;
+        // dd($old_img);
+        $item = News::find($id);
+        $old_img = $item->img;
+        Storage::delete(public_path().$old_img);
+    //    File::delete(public_path().$old_img);
        DB::table('newstest')->delete($id);
-       $news = DB::table('newstest')->get();
+
        return redirect('/data');
     }
 }

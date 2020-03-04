@@ -15,6 +15,7 @@
                     <th>ID</th>
                     <th>IMG</th>
                     <th>Context</th>
+                    <th>Sort</th>
                     <th></th>
 
                 </tr>
@@ -23,8 +24,9 @@
                 @foreach ($news as $item)
                     <tr>
                         <td>{{$item->id}}</td>
-                        <td><img src="{{$item->img}}" alt=""></td>
+                        <td><img src="{{asset('/storage/'.$item->img)}}" alt=""></td>
                         <td>{{$item->context}}</td>
+                        <td>{{$item->sort}}</td>
                         <td>
                             <a href="/data/{{$item->id}}/edit" class="btn btn-success">修改</a>
                             <button type="submit" class="btn btn-danger" onclick="show_confirm({{$item->id}})">刪除</button>
@@ -46,6 +48,7 @@
                     <th>ID</th>
                     <th>IMG</th>
                     <th>Context</th>
+                    <th>Sort</th>
                     <th></th>
 
                 </tr>

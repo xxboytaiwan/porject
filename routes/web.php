@@ -47,6 +47,6 @@ Route::resource('product', 'ProductController');
 
 
 
-// });
+
 
 Auth::routes();

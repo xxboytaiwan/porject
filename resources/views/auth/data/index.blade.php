@@ -13,7 +13,7 @@
             <thead>
                 <tr>
                     <th>ID</th>
-                    <th>IMG</th>
+                    <th style="width:30%">IMG</th>
                     <th>Context</th>
                     <th>Sort</th>
                     <th></th>
@@ -24,7 +24,7 @@
                 @foreach ($news as $item)
                     <tr>
                         <td>{{$item->id}}</td>
-                        <td><img src="{{asset('/storage/'.$item->img)}}" alt=""></td>
+                        <td><img src="{{asset('/storage/'.$item->img)}}" alt="" style="width:100%"></td>
                         <td>{{$item->context}}</td>
                         <td>{{$item->sort}}</td>
                         <td>

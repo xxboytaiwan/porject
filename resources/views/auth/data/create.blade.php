@@ -2,12 +2,11 @@
 
 @section('content')
 <div class="container">
-    <form method="POST" action="/newscontroll/store" enctype="multipart/form-data">
+    <form method="POST" action="/data" enctype="multipart/form-data">
         @csrf
         <div class="form-group">
           <label for="id">ID</label>
-          <input type="text" class="form-control" id="id" aria-describedby="emailHelp" name="id">
-          <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone else.</small>
+          <input type="text" class="form-control" id="id"  name="id">
         </div>
         <div class="form-group">
           <label for="img">IMG</label>

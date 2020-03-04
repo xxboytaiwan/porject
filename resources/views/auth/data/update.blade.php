@@ -10,11 +10,11 @@
         </div>
         <div class="form-group">
             <label for="img">現有圖片</label>
-            <img src="{{asset('/storage/'.$news->img)}}" alt="">
+            <img src="{{asset('/storage/'.$news->img)}}" alt="" style="width:30%">
           </div>
         <div class="form-group">
           <label for="img">IMG</label>
-            <input type="file" class="form-control" id="img" name="img" value="{{$news->img}}">
+            <input type="file" class="form-control" id="img" name="img">
         </div>
         <div class="form-group">
             <label for="context">Context</label>

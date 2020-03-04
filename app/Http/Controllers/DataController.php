@@ -40,7 +40,14 @@ class DataController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $news_data = $request ->all();
+        $file_name = $request->file('img')->store('','public');
+        
+        $news_data['img']=$file_name;
+
+        News::create($news_data) -> save();
+        // dd($file_name);
+        return redirect('/card');
     }
 
     /**
@@ -63,6 +70,7 @@ class DataController extends Controller
     public function edit($id)
     {
         $news = DB::table('newstest')->find($id);
+       
         return view('auth/data/update',compact('news'));
     }
 
@@ -79,7 +87,27 @@ class DataController extends Controller
         // $news->img = $request->img;
         // $news->context = $request->context;
         // $news->save();
-        News::find($id) ->update($request->all());
+        // $old_img = $request->file('img');
+        $item = News::find($id);
+        $old_img = $item->img;
+        // dd($old_img);
+        
+
+        $news_data = $request ->all();
+        
+        if ($request->hasFile('img')) {
+            Storage::disk('public')->delete($old_img);
+            $file_name = $request->file('img')->store('','public');
+            $news_data['img']=$file_name;
+        }
+        else {
+            $news_data['img'] = $old_img;
+        }
+        
+        // dd($file_name);
+        
+        // dd($news_data['img']);
+        News::find($id) ->update($news_data);
 
         return redirect('/data');
 
@@ -93,14 +121,10 @@ class DataController extends Controller
      */
     public function destroy($id)
     {
-
-    //    $old_img = News::find($id)->img;
-        // dd($old_img);
         $item = News::find($id);
         $old_img = $item->img;
-        Storage::delete(public_path().$old_img);
-    //    File::delete(public_path().$old_img);
-       DB::table('newstest')->delete($id);
+        Storage::disk('public')->delete($old_img);
+        DB::table('newstest')->delete($id);
 
        return redirect('/data');
     }

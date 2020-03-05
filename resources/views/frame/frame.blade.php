@@ -145,7 +145,7 @@
                     <a href="/pics" class="nav-link">Pics</a>
                 </li>
                 <li class="nav-item">
-                    <a href="/data" class="nav-link">Update</a>
+                    <a href="/data" class="nav-link">新聞管理</a>
                 </li>
                 <li><a href="/home" class="nav-link">Login</a></li>
                 <!-- <li class="nav-item dropdown">

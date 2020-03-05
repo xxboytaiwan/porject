@@ -512,57 +512,69 @@
             $('#example').DataTable();
         } );
         var aa = [];
+        var bb =[{
+            name:,
+            Position:,
+            Office:,
+            Age:,
+            StartDate:,
+            Salary:,
+
+        }]
         $('#test').click(function(){
-            for (var i = 0 ; i < $('tbody tr').length ; i++)
-            {
-                aa[i] = [];
-                for(var j = 0 ; j < $(`tbody tr:nth-child(${i+1}) td`).length ; j++)
-                {
-                    aa[i][j] = $(`tbody tr:nth-child(${i+1}) td:nth-child(${j+1})`).html();
-                    // console.log(aa[i][j]);
 
 
-                    switch (j+1) {
-                        case 1:
-                            $('#name').attr('value',`${aa[i][j]}`);
 
-                            break;
-
-                            case 2:
-                            $('#Position').attr('value',`${aa[i][j]}`);
-
-                            break;
-
-                            case 3:
-                            $('#Office').attr('value',`${aa[i][j]}`);
-
-                            break;
-
-                            case 4:
-                            $('#Age').attr('value',`${aa[i][j]}`);
-
-                            break;
-
-                            case 5:
-                            $('#StartDate').attr('value',`${aa[i][j]}`);
-
-                            break;
-
-                            case 6:
-                            $('#Salary').attr('value',`${aa[i][j]}`);
-                            // console.log($('#Salary').attr('value'));
-                            break;
-                    }
-                    // console.log(aa[i][j]);
+            // for (var i = 0 ; i < $('tbody tr').length ; i++)
+            // {
+            //     aa[i] = [];
+            //     for(var j = 0 ; j < $(`tbody tr:nth-child(${i+1}) td`).length ; j++)
+            //     {
+            //         aa[i][j] = $(`tbody tr:nth-child(${i+1}) td:nth-child(${j+1})`).html();
+            //         console.log(aa[i][j]);
 
 
-                }
+            //         switch (j+1) {
+            //             case 1:
+            //                 $('#name').attr('value',`${aa[i][j]}`);
 
-                $('#ff').submit().delay(10000);
+            //                 break;
+
+            //                 case 2:
+            //                 $('#Position').attr('value',`${aa[i][j]}`);
+
+            //                 break;
+
+            //                 case 3:
+            //                 $('#Office').attr('value',`${aa[i][j]}`);
+
+            //                 break;
+
+            //                 case 4:
+            //                 $('#Age').attr('value',`${aa[i][j]}`);
+
+            //                 break;
+
+            //                 case 5:
+            //                 $('#StartDate').attr('value',`${aa[i][j]}`);
+
+            //                 break;
+
+            //                 case 6:
+            //                 $('#Salary').attr('value',`${aa[i][j]}`);
+            //                 // console.log($('#Salary').attr('value'));
+            //                 break;
+            //         }
+            //         // console.log(aa[i][j]);
 
 
-            }
-            
+            //     }
+
+            //     $('#ff').submit().delay(10000);
+
+
+            // }
+
         })
     </script>
 @endsection

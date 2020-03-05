@@ -3,13 +3,12 @@
 namespace App\Http\Controllers;
 
 use App\News;
-use App\Update;
+use App\NewsImgs;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
-use Illuminate\Support\Facades\File;
 use Illuminate\Support\Facades\Storage;
 
-class DataController extends Controller
+class RelationController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -19,7 +18,7 @@ class DataController extends Controller
     public function index()
     {
         $news = DB::table('newstest')->get();
-        return view('auth/data/index',compact('news'));
+        return view('/Relation/index',compact('news'));
     }
 
     /**
@@ -29,7 +28,7 @@ class DataController extends Controller
      */
     public function create()
     {
-        return view('auth/data/create');
+        return view('/Relation/create');
     }
 
     /**
@@ -40,14 +39,24 @@ class DataController extends Controller
      */
     public function store(Request $request)
     {
+
+        // dd($request->img_group);
         $news_data = $request ->all();
         $file_name = $request->file('img')->store('','public');
-
         $news_data['img']=$file_name;
-
         News::create($news_data) -> save();
-        // dd($file_name);
-        return redirect('/data');
+        if($news_data->hasfile('img_group')){
+            foreach($request->file('img_group')as $file)
+            {
+                $path = $this->fileUpload($file,'public');
+                $product_img = new ProductImg;
+                $product_img->product_id = $new_product_id;
+                $product_img->img = $path;
+                $product_img->save();
+            }
+        }
+
+        return redirect('/relation');
     }
 
     /**
@@ -58,7 +67,10 @@ class DataController extends Controller
      */
     public function show($id)
     {
-        //
+      $news = News::with('NewsImgs')->find($id);
+
+
+        return view('/relation/show',compact('news'));
     }
 
     /**
@@ -69,9 +81,7 @@ class DataController extends Controller
      */
     public function edit($id)
     {
-        $news = DB::table('newstest')->find($id);
-
-        return view('auth/data/update',compact('news'));
+        //
     }
 
     /**
@@ -83,34 +93,7 @@ class DataController extends Controller
      */
     public function update(Request $request, $id)
     {
-        // $news = News::find($id);
-        // $news->img = $request->img;
-        // $news->context = $request->context;
-        // $news->save();
-        // $old_img = $request->file('img');
-        $item = News::find($id);
-        $old_img = $item->img;
-        // dd($old_img);
-
-
-        $news_data = $request ->all();
-
-        if ($request->hasFile('img')) {
-            Storage::disk('public')->delete($old_img);
-            $file_name = $request->file('img')->store('','public');
-            $news_data['img']=$file_name;
-        }
-        else {
-            $news_data['img'] = $old_img;
-        }
-
-        // dd($file_name);
-
-        // dd($news_data['img']);
-        News::find($id) ->update($news_data);
-
-        return redirect('/data');
-
+        //
     }
 
     /**
@@ -121,11 +104,6 @@ class DataController extends Controller
      */
     public function destroy($id)
     {
-        $item = News::find($id);
-        $old_img = $item->img;
-        Storage::disk('public')->delete($old_img);
-        DB::table('newstest')->delete($id);
-
-       return redirect('/data');
+        //
     }
 }

@@ -13,4 +13,8 @@ class News extends Model
 
         'id','img','context','sort',
     ];
+    public function NewsImgs ()
+    {
+        return $this->hasMany('App\NewsImgs','NewsID','id');
+    }
 }

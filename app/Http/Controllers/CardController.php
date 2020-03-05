@@ -3,9 +3,9 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Employees;
+use Illuminate\Support\Facades\DB;
 
-class UpdateController extends Controller
+class CardController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -14,7 +14,7 @@ class UpdateController extends Controller
      */
     public function index()
     {
-       return view('auth/update/index');
+        //
     }
 
     /**
@@ -35,11 +35,7 @@ class UpdateController extends Controller
      */
     public function store(Request $request)
     {
-        $Arr = $request -> all();
-
-        Employees::create($Arr) -> save();
-        // // dd($Arr);
-        return redirect('/update');
+        //
     }
 
     /**
@@ -50,7 +46,9 @@ class UpdateController extends Controller
      */
     public function show($id)
     {
-        //
+        $news = DB::table('newstest')->find($id);
+
+        return view('/Card/index',compact('news'));
     }
 
     /**

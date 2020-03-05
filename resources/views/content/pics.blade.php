@@ -1,5 +1,7 @@
 @extends('frame/frame')
-
+@section('css')
+    <link rel="stylesheet" href="{{asset('assets/frame/css/pics.css')}}">
+@endsection
 @section('home')
 <body>
     <div class="All">

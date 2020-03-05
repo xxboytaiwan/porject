@@ -40,21 +40,33 @@ class RelationController extends Controller
     public function store(Request $request)
     {
 
-        // dd($request->img_group);
-        $news_data = $request ->all();
-        $file_name = $request->file('img')->store('','public');
-        $news_data['img']=$file_name;
-        News::create($news_data) -> save();
-        if($news_data->hasfile('img_group')){
-            foreach($request->file('img_group')as $file)
-            {
-                $path = $this->fileUpload($file,'public');
-                $product_img = new ProductImg;
-                $product_img->product_id = $new_product_id;
-                $product_img->img = $path;
-                $product_img->save();
+
+
+        $request_data = $request->all();
+
+        //單筆
+        $img = $request->file('img');
+        $img_id = $request->id;
+        
+        $name_img  = $request->file('img')->store('','public');
+        $request_data['img'] = $name_img;
+        News::create($request_data);
+        
+        //多筆
+        $img_group = $request->file('img_group');
+        // dd($img_group);
+        if($request->hasFile('img_group'))
+        {
+            foreach ($img_group as $file) {
+                $path = $file->store('','public');
+                $NewsImgs = new NewsImgs;
+                $NewsImgs->NewsID = $img_id;
+                $NewsImgs->img = $path;
+                $NewsImgs->save();
             }
         }
+       
+    //    dd($img_group);
 
         return redirect('/relation');
     }
@@ -81,7 +93,7 @@ class RelationController extends Controller
      */
     public function edit($id)
     {
-        //
+        dd($id);
     }
 
     /**
@@ -104,6 +116,17 @@ class RelationController extends Controller
      */
     public function destroy($id)
     {
-        //
+        //刪除主圖
+        $item_main = News::find($id);
+        Storage::disk('public')->delete($item_main->img);
+        $item_main->delete();
+
+        //刪除附圖
+        $item_sub = NewsImgs::where('NewsID',$id)->get();
+        foreach ($item_sub as $item) {
+            Storage::disk('public')->delete($item->img);
+            $item->delete();
+        }
+        return redirect('/relation');
     }
 }

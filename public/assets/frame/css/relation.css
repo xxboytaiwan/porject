@@ -1,0 +1,19 @@
+.All{
+    width:80%;
+    margin:auto;
+    display:flex;
+    justify-content:center;
+    flex-direction: column;
+}
+.btns{
+    width:50%;
+    margin:auto;
+    display:flex;
+    justify-content:center;
+}
+.mainPic{
+    width:50%;
+    margin:auto;
+    display:flex;
+    justify-content:center;
+}

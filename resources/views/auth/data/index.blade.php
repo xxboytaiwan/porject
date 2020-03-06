@@ -73,6 +73,8 @@
         if (r== true)
         {
             document.getElementById(`de${id}`).submit();
+            // console.log(document.getElementById(`de${id}`));
+
         }
     }
 </script>

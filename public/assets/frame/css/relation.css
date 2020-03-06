@@ -1,19 +1,51 @@
-.All{
-    width:80%;
-    margin:auto;
-    display:flex;
-    justify-content:center;
+.All {
+    width: 80%;
+    margin: auto;
+    display: flex;
+    justify-content: center;
     flex-direction: column;
 }
-.btns{
-    width:50%;
-    margin:auto;
-    display:flex;
-    justify-content:center;
+
+.btns {
+    width: 50%;
+    margin: auto;
+    display: flex;
+    justify-content: center;
 }
-.mainPic{
-    width:50%;
-    margin:auto;
-    display:flex;
-    justify-content:center;
+
+.mainPic {
+    width: 50%;
+    margin: auto;
+    display: flex;
+    justify-content: center;
+}
+
+.picsview {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-around;
+    position: relative;
+    z-index: 0;
+    width: 80%;
+}
+
+.picss {
+    width: 100%;
+}
+
+.picbody {
+    position: relative;
+    z-index: 0;
+    width: 23%;
+}
+
+.delete {
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    background-color: red;
+    position: absolute;
+    z-index: 1;
+    left: 0px;
+    top: 0px;
 }

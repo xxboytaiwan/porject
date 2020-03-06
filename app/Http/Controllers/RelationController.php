@@ -47,25 +47,27 @@ class RelationController extends Controller
         //單筆
         $img = $request->file('img');
         $img_id = $request->id;
-        
+
         $name_img  = $request->file('img')->store('','public');
         $request_data['img'] = $name_img;
         News::create($request_data);
-        
+
         //多筆
         $img_group = $request->file('img_group');
         // dd($img_group);
         if($request->hasFile('img_group'))
         {
+
             foreach ($img_group as $file) {
                 $path = $file->store('','public');
+
                 $NewsImgs = new NewsImgs;
                 $NewsImgs->NewsID = $img_id;
                 $NewsImgs->img = $path;
                 $NewsImgs->save();
             }
         }
-       
+
     //    dd($img_group);
 
         return redirect('/relation');
@@ -93,7 +95,10 @@ class RelationController extends Controller
      */
     public function edit($id)
     {
-        dd($id);
+        $news = DB::table('newstest')->find($id);
+        $news_img = DB::table('newstestimgs')->where('NewsID',$id)->get();
+
+        return view('/relation/edit',compact('news','news_img'));
     }
 
     /**
@@ -105,7 +110,38 @@ class RelationController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $item = News::find($id);
+        $old_img = $item->img;
+        $img_id = $item->id;
+
+        $news_data = $request ->all();
+
+        if ($request->hasFile('img')) {
+            Storage::disk('public')->delete($old_img);
+            $file_name = $request->file('img')->store('','public');
+            $news_data['img']=$file_name;
+        }
+        else {
+            $news_data['img'] = $old_img;
+        }
+
+        News::find($id) ->update($news_data);
+
+        $img_group = $request->file('img_group');
+        if($request->hasFile('img_group'))
+        {
+
+            foreach ($img_group as $file) {
+                $path = $file->store('','public');
+                $NewsImgs = new NewsImgs;
+                $NewsImgs->NewsID = $img_id;
+                $NewsImgs->img = $path;
+                $NewsImgs->save();
+            }
+        }
+
+
+        return redirect('/relation');
     }
 
     /**
@@ -128,5 +164,10 @@ class RelationController extends Controller
             $item->delete();
         }
         return redirect('/relation');
+    }
+    public function attachdelete(Request $request)
+    {
+        Storage::disk('public')->delete($request->file);
+        NewsImgs::where('img',$request->file)->delete();
     }
 }

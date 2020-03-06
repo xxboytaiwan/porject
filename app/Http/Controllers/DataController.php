@@ -90,8 +90,6 @@ class DataController extends Controller
         // $old_img = $request->file('img');
         $item = News::find($id);
         $old_img = $item->img;
-        // dd($old_img);
-
 
         $news_data = $request ->all();
 
@@ -104,9 +102,6 @@ class DataController extends Controller
             $news_data['img'] = $old_img;
         }
 
-        // dd($file_name);
-
-        // dd($news_data['img']);
         News::find($id) ->update($news_data);
 
         return redirect('/data');

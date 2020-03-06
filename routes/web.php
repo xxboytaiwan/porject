@@ -39,6 +39,7 @@ Route::resource('product', 'ProductController');
 
 
 Route::resource('/relation', 'RelationController');
+Route::post('/relation/delete/','RelationController@attachdelete');
 
 
 

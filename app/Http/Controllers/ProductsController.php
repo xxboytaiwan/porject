@@ -3,8 +3,10 @@
 namespace App\Http\Controllers;
 
 use App\Product;
+use App\ProductTypes;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Storage;
 
 class ProductsController extends Controller
 {
@@ -42,8 +44,11 @@ class ProductsController extends Controller
     {
         $request_data = $request->all();
         // dd($request_data);
-        $path = $request->file('img') ->store('','public');
-        $request_data['img'] = $path;
+        if ($request->hasfile('img')) {
+            $path = $request->file('img') ->store('','public');
+            $request_data['img'] = $path;
+        }
+        
         Product::create($request_data);
         return redirect('/product_manager/products');
     }
@@ -67,7 +72,14 @@ class ProductsController extends Controller
      */
     public function edit($id)
     {
-        //
+        
+        $products = DB::table('products')->find($id);
+        
+        $product_types = DB::table('product_types')->get();
+
+        $product_typename = ProductTypes::with('Products')->where('id',$products->type_id)->get();
+        
+        return view('/product_manager/products/edit',compact('products','product_types','product_typename'));
     }
 
     /**
@@ -79,7 +91,16 @@ class ProductsController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $request_data = $request ->all();
+        if ($request->hasfile('img')) {
+            $old_img = Product::find($id)->img;
+           
+            Storage::disk('public')->delete($old_img);
+            $path = $request->file('img') ->store('','public');
+            $request_data['img'] = $path;
+        }
+        Product::find($id) ->update($request_data);
+        return redirect('/product_manager/products/');
     }
 
     /**
@@ -90,7 +111,9 @@ class ProductsController extends Controller
      */
     public function destroy($id)
     {
-        Product::find($id)->delete();
+        $product = Product::find($id);
+        Storage::disk('public')->delete($product->img);
+        $product->delete();
         return redirect('/product_manager/products/');
     }
 }

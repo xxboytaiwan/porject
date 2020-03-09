@@ -11,6 +11,7 @@
             <tr>
                 <th>Type</th>
                 <th>Product Name</th>
+                <th>IMG</th>
                 <th>Product_content</th>
                 <th>Sort</th>
                 <th>功能</th>
@@ -22,17 +23,16 @@
                 <tr>
                     <td>{{$item->ProductTypes->type_name}}</td>
                     <td>{{$item->product_name}}</td>
+                    <td><img src="{{asset('/storage/'.$item->img)}}" alt="" style="width:80%"></td>
                     <td>{{$item->product_content}}</td>
                     <td>{{$item->product_sort}}</td>
                     <td>
                         <a href="/data/{{$item->id}}/edit" class="btn btn-success">修改</a>
                         <button type="submit" class="btn btn-danger" onclick="show_confirm({{$item->id}})">刪除</button>
-                        <form action="/data/{{$item->id}}" method="POST" id="de{{$item->id}}" style="display:none">
+                        <form action="/product_manager/products/{{$item->id}}" method="POST" id="de{{$item->id}}" style="display:none">
                             @csrf
                             @method('DELETE')
                         </form>
-
-
                     </td>
 
                 </tr>
@@ -44,6 +44,7 @@
             <tr>
                 <th>Type</th>
                 <th>Product Name</th>
+                <th>IMG</th>
                 <th>Product_content</th>
                 <th>Sort</th>
                 <th>功能</th>
@@ -54,3 +55,19 @@
 </div>
 @endsection
 
+@section('js')
+    {{-- <script src="https://code.jquery.com/jquery-3.3.1.js"></script> --}}
+    <script src="https://cdn.datatables.net/1.10.20/js/jquery.dataTables.min.js"></script>
+    <script src="https://cdn.datatables.net/1.10.20/js/dataTables.bootstrap4.min.js"></script>
+    <script>
+
+    function show_confirm(id)
+    {
+        var r = confirm("A U Sure?")
+        if (r== true)
+        {
+            document.getElementById(`de${id}`).submit();
+        }
+    }
+</script>
+@endsection

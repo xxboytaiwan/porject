@@ -9,7 +9,7 @@
         @csrf
         <div class="form-group">
             <label for="type_id">Type Name</label>
-            <select name="type_id" id="type_id">
+            <select name="type_id" id="type_id" require>
                 <option selected>Open this select menu</option>
                 @foreach ($product_types as $item)
             <option value="{{$item->id}}">{{$item->type_name}}</option>
@@ -25,7 +25,7 @@
         </div>
         <div class="form-group">
           <label for="img">IMG</label>
-          <input type="file" class="form-control" id="img" name="img">
+          <input type="file" class="form-control" id="img" name="img" >
         </div>
         <div class="form-group">
             <label for="product_content">Product Content</label>

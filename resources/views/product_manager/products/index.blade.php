@@ -25,7 +25,7 @@
                     <td>{{$item->product_name}}</td>
                     <td>{{$item->product_content}}</td>
                     <td>{{$item->product_sort}}</td>
-                    <td><img src="{{asset('/storage/'.$item->img)}}" alt=""></td>
+                    <td><img src="{{asset('/storage/'.$item->img)}}" alt="" style="width:100%"></td>
 
                     <td>
                         <a href="/product_manager/products/{{$item->id}}/edit" class="btn btn-success">修改</a>

@@ -24,6 +24,18 @@ Route::group(['middleware' => 'auth'], function () {
     Route::get('/home', 'HomeController@index');
     Route::resource('/data', 'DataController');
     Route::resource('/update', 'UpdateController');
+
+    //總產品管理
+    Route::get('/product_manager','ProductManager@index');
+    Route::get('/product_manager/create','ProductManager@create');
+
+    //產品類型管理
+    Route::resource('/product_manager/producttypes', 'ProductTypesController');
+
+    //產品管理
+    Route::resource('/product_manager/products', 'ProductsController');
+
+
 });
 
 Route::get('/card', 'FrontController@news');
@@ -40,7 +52,9 @@ Route::resource('product', 'ProductController');
 
 Route::resource('/relation', 'RelationController');
 Route::post('/relation/delete/','RelationController@attachdelete');
+Route::post('/relation/ajaxupload','RelationController@ajax_upload');
 
+Route::get('/summernote','SummernoteController@index');
 
 
 

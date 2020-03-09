@@ -54,6 +54,9 @@
                         <li class="nav-item">
                             <a href="/update" class="nav-link">Update</a>
                          </li>
+                         <li class="nav-item">
+                            <a href="/product_manager" class="nav-link">產品管理</a>
+                         </li>
                     </ul>
 
                     <!-- Right Side Of Navbar -->

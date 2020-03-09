@@ -170,4 +170,8 @@ class RelationController extends Controller
         Storage::disk('public')->delete($request->file);
         NewsImgs::where('img',$request->file)->delete();
     }
+    public function ajax_upload(Request $request){
+        $allow = array('png','jpg','zip','gif');
+        dd($request);
+    }
 }

@@ -27,8 +27,7 @@
                 <div class="picbody" newsimgs_id={{$item->id}} newsimgs_img={{$item->img}}>
                     <img src="{{asset('/storage/'.$item->img)}}" class="picss">
                     <input type="text" class="picss" name="sort" id="sort" value="{{$item->sort}}">
-                    <div class="dele
-                    te"></div>
+                    <div class="delete"></div>
 
                 </div>
                 @endforeach

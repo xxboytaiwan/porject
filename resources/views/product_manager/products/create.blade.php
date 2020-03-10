@@ -9,8 +9,8 @@
         @csrf
         <div class="form-group">
             <label for="type_id">Type Name</label>
-            <select name="type_id" id="type_id" require>
-                <option selected>Open this select menu</option>
+            <select name="type_id" id="type_id" required>
+                <option selected></option>
                 @foreach ($product_types as $item)
             <option value="{{$item->id}}">{{$item->type_name}}</option>
                 @endforeach

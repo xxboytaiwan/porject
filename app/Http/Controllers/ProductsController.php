@@ -18,7 +18,6 @@ class ProductsController extends Controller
     public function index()
     {
         $products = Product::with('ProductTypes')->get();
-        // dd($products->ProductTypes->type_name);
         return view('/product_manager/products/index',compact('products'));
 
     }
@@ -48,7 +47,7 @@ class ProductsController extends Controller
             $path = $request->file('img') ->store('','public');
             $request_data['img'] = $path;
         }
-        
+
         Product::create($request_data);
         return redirect('/product_manager/products');
     }
@@ -72,13 +71,13 @@ class ProductsController extends Controller
      */
     public function edit($id)
     {
-        
+
         $products = DB::table('products')->find($id);
-        
+
         $product_types = DB::table('product_types')->get();
 
         $product_typename = ProductTypes::with('Products')->where('id',$products->type_id)->get();
-        
+
         return view('/product_manager/products/edit',compact('products','product_types','product_typename'));
     }
 
@@ -94,7 +93,7 @@ class ProductsController extends Controller
         $request_data = $request ->all();
         if ($request->hasfile('img')) {
             $old_img = Product::find($id)->img;
-           
+
             Storage::disk('public')->delete($old_img);
             $path = $request->file('img') ->store('','public');
             $request_data['img'] = $path;

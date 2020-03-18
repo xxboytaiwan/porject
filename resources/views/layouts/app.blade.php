@@ -58,6 +58,9 @@
                          <li class="nav-item">
                             <a href="/product_manager" class="nav-link">產品管理</a>
                          </li>
+                         <li class="nav-item">
+                            <a href="/contact_manager" class="nav-link">聯絡管理</a>
+                         </li>
                     </ul>
 
                     <!-- Right Side Of Navbar -->

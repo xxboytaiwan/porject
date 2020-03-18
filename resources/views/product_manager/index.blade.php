@@ -5,7 +5,7 @@
 
 @section('content')
 <div class="container">
-    <a href="/product_manager/create" class="btn btn-success">新增</a>
+    <a href="/product_manager/create" class="btn btn-success">管理</a>
     <table id="example" class="table table-striped table-bordered" style="width:100%">
         <thead>
             <tr>
@@ -14,7 +14,7 @@
                 <th>IMG</th>
                 <th>Product_content</th>
                 <th>Sort</th>
-                <th>功能</th>
+
 
             </tr>
         </thead>
@@ -26,14 +26,7 @@
                     <td><img src="{{asset('/storage/'.$item->img)}}" alt="" style="width:80%"></td>
                     <td>{{$item->product_content}}</td>
                     <td>{{$item->product_sort}}</td>
-                    <td>
-                        <a href="/data/{{$item->id}}/edit" class="btn btn-success">修改</a>
-                        <button type="submit" class="btn btn-danger" onclick="show_confirm({{$item->id}})">刪除</button>
-                        <form action="/product_manager/products/{{$item->id}}" method="POST" id="de{{$item->id}}" style="display:none">
-                            @csrf
-                            @method('DELETE')
-                        </form>
-                    </td>
+
 
                 </tr>
             @endforeach
@@ -47,7 +40,6 @@
                 <th>IMG</th>
                 <th>Product_content</th>
                 <th>Sort</th>
-                <th>功能</th>
 
             </tr>
         </tfoot>

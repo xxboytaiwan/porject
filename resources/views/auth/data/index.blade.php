@@ -8,7 +8,7 @@
 
 @section('content')
     <div class="container">
-        <a href="/Relation/create" class="btn btn-success">新增</a>
+        <a href="/relation/create" class="btn btn-success">新增</a>
         <table id="example" class="table table-striped table-bordered" style="width:100%">
             <thead>
                 <tr>

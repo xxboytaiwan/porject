@@ -33,9 +33,15 @@
                     <a href="/pics" class="nav-link">Pics</a>
                 </li>
                 <li class="nav-item">
+                    <a href="/shopping" class="nav-link">Shopping</a>
+                </li>
+                <li class="nav-item">
                     <a href="/data" class="nav-link">新聞管理</a>
                 </li>
                 <li><a href="/home" class="nav-link">Login</a></li>
+                <li class="nav-item">
+                    <a href="/contact" class="nav-link">聯絡我們</a>
+                </li>
                 <!-- <li class="nav-item dropdown">
                     <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                 Dropdown

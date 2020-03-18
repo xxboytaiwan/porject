@@ -1,0 +1,115 @@
+@extends('/frame/frame')
+
+@section('css')
+    <style>
+        .product_pic{
+            width: 50%;
+            height:30vh;
+            background-color: black;
+            margin: auto;
+        }
+        .row .card{
+                    cursor: pointer;
+                    text-align: center;
+                    text-justify: auto;
+                  }
+        .row .card.active{
+            border-color: red;
+        }
+
+        .row .format{
+                    cursor: pointer;
+                    text-align: center;
+                    text-justify: auto;
+                    border: 1px solid black;
+        }
+        .row .format.active{
+            border-color: red;
+        }
+
+        #form{
+
+        }
+
+    </style>
+@endsection
+
+@section('card')
+<div class="product_pic"></div>
+<div class="container">
+    <div>Product Name</div>
+    <div class="row">
+        <div class="format col-4" format_type = '128'>128G 雙</div>
+        <div class="format col-4" format_type = '256'>256G 雙</div>
+    </div>
+
+    <div class="row">
+        <div class="card col-4" colortype='red'>紅</div>
+        <div class="card col-4" colortype='orange'>澄</div>
+        <div class="card col-4" colortype ='blue'>藍</div>
+        <div class="card col-4" colortype ='purple'>紫</div>
+        <input type="text" name="color" id="color" value="" class="color" hidden>
+
+        <div class="col-12">
+            <form action="" method="POST" id="form">
+                @csrf
+                <div class="qtt">
+                    數量
+                    <a href="#" id="minus">-</a>
+                    <input type="number" value="1" id="qtt">
+                    <a href="#" id="plus">+</a>
+                </div>
+                <div>
+                    <span class="format_chosen"></span><span class="color"></span> + <span class="qtts">1</span>
+                </div>
+                <div class="total">
+                    <button type="submit">立即結帳</button>
+                </div>
+
+            </form>
+        </div>
+
+    </div>
+
+
+
+</div>
+
+@endsection
+
+@section('js')
+    <script>
+        $('.row .format').click(function(){
+            $('.row .format').removeClass('active');
+            $(this).addClass('active');
+            $('.format_chosen').html(`${$(this).attr('format_type')}`)
+        })
+
+        $('.row .card').click(function(){
+            $('.row .card').removeClass('active');
+            $(this).addClass('active');
+            $('#color').attr('value',`${$(this).attr('colortype')}`)
+            $('.color').html(`${$(this).attr('colortype')}`);
+
+        })
+        var nm = parseInt($('#qtt').attr('value'));
+
+
+        $('#minus').click(function(){
+           nm --;
+          if (nm<0)
+          {
+              nm =0
+          }
+
+            $('#qtt').attr('value',nm);
+            $('.qtts').html(nm);
+        })
+        $('#plus').click(function(){
+            nm++;
+            $('#qtt').attr('value',nm);
+            $('.qtts').html(nm);
+        })
+    </script>
+
+@endsection

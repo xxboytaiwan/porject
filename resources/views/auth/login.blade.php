@@ -54,6 +54,12 @@
 
                             {!! htmlFormSnippet() !!}
 
+                            @error('g-recaptcha-response')
+                            <span class="alert alert-danger" role="alert">
+                                <strong>Robot?</strong>
+                            </span>
+                        @enderror
+
 
 
                         <div class="form-group row mb-0">

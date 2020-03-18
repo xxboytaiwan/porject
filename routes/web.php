@@ -36,11 +36,17 @@ Route::group(['middleware' => 'auth'], function () {
     Route::resource('/product_manager/products', 'ProductsController');
 
 
+    //聯絡管理
+    Route::resource('/contact_manager', 'ContactController');
+
+
 });
 
 Route::get('/card', 'FrontController@news');
 Route::get('/', 'FrontController@index');
 Route::get('/hollow', 'FrontController@hollow');
+Route::get('/contact','FrontController@contact');
+Route::post('/contact/create','FrontController@contactcreate');
 
 Route::resource('/Detail', 'CardController');
 
@@ -55,6 +61,10 @@ Route::post('/relation/delete/','RelationController@attachdelete');
 Route::post('/relation/ajaxupload','RelationController@ajax_upload');
 
 Route::get('/summernote','SummernoteController@index');
+
+//shopping
+Route::get('/shopping','FrontController@shopping');
+Route::post('/shopping/cart','FrontController@shopping_cart');
 
 
 

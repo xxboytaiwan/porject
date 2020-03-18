@@ -77,6 +77,7 @@ class ProductsController extends Controller
         $product_types = DB::table('product_types')->get();
 
         $product_typename = ProductTypes::with('Products')->where('id',$products->type_id)->get();
+        
 
         return view('/product_manager/products/edit',compact('products','product_types','product_typename'));
     }
